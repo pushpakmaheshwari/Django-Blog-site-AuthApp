@@ -1,0 +1,16 @@
+{% extends 'blogapp/commonpage.html' %}
+{% load static %}
+{% block parentblock %}
+{% load crispy_forms_tags %}
+<title> Login </title> <br> <br>
+<center> <u> <h1> Welcome to Pushpak Blogs</h1> </U> <br> <br> <br> </center>
+<div class="container">
+<form method="post">
+{{form | crispy}}
+{% csrf_token %}
+<center><input type="submit" value="Login"> <br> <br>
+
+  </form>
+</div>
+
+{% endblock %}

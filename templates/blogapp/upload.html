@@ -1,0 +1,26 @@
+
+{% extends 'blogapp/commonpage.html' %}
+{% block parentblock %}
+{% load static %}
+
+    <title>Create New blog </title>
+{% load crispy_forms_tags %}
+
+<center> <h1> Crete New Blog </h1> </center> <br>
+{% if msg %}
+<div class="alert alert-success alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <center><strong> {{msg}} </strong> </center>
+</div>
+{%endif%}
+<div class="row justify-content-center">
+  <div class="col-lg-4">
+
+  <form method="post" enctype="multipart/form-data">
+    {{uploadform | crispy }}
+    {% csrf_token%}
+    <center><input type="submit" name="" value="Save"> </center>
+  </form>
+  </div>
+</div>
+{% endblock %}

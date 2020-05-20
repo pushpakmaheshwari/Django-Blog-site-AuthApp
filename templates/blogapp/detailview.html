@@ -1,0 +1,19 @@
+{% extends 'blogapp/commonpage.html' %}
+{% block parentblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+    <title> {{images.name}} </title> <br>
+<center> <u> <h1> {{images.name}} </h1> </center></u> <br>
+
+{% if images %}
+<center><h1>{{images.Title}}</h1></center>
+
+<h6>Blog: {{images.id}}</h6>
+<h6>Posted by: {{images.postedby}}</h6>
+
+<center><img src="{{images.pic.url}}" height="200" width="350"> </center><br>
+<center><h4>{{images.Description}}</h4></center>
+
+{% endif %}
+{% endblock %}

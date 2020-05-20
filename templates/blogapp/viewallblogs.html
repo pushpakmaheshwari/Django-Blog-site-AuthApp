@@ -1,0 +1,38 @@
+{% extends 'blogapp/commonpage.html' %}
+{% block parentblock %}
+{% load static %}
+<head>
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+<title> View all Blogs </title> <br>
+<center> <u> <h1> View all blogs</h1> </U> <br></center>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div class="container">
+    {% if msg %}
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <center><strong>{{msg}}</strong> </center>
+      </div>
+    {% endif %}
+  {% if images %}
+
+<table border="2" class="table table-hover">
+  <tr>
+    <th>ID</th> <th>Title</th> <th>Image</th> <th>Description</th> <th>Posted by</th> <th>Date-Time</th> <th></th>
+  </tr>
+  {% for img in images %}
+    <tr>
+    <td> {{img.id}} </td>
+    <td> <a href="/detailview/{{img.id}}"> {{img.Title}}</a> </td>
+    <td> <a href="/detailview/{{img.id}}"> <img src="{{img.pic.url}}" height="100" width="150"></a> </td>
+    <td> {{img.Description}} </td>
+    <td> {{img.postedby}} </td>
+    <td> {{img.upload_date | timesince}} </td>
+    {% ifequal request.user.username img.postedby %}
+    <td><a href="/deleteproduct/{{img.id}}"><button type="button"><i class="fa fa-trash" onclick="return confirm('Are you sure?')"></i></button></a> </td>
+    {%endifequal%}
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+</head>
+{% endblock %}
